@@ -317,18 +317,73 @@ code {
   .wrap { padding: 0 22px; }
 }
 
-/* ---- Print ---- */
+/* ---- Print ----
+   Every rule above sizes in absolute px, so overriding body alone was not
+   enough: paragraphs inherited the smaller body size while publication
+   entries, the bio and the tables kept their screen px and ended up LARGER
+   than the body text. Print therefore restates each size, in pt.
+
+   The :root reset matters just as much. Without it, printing from a machine
+   in dark mode keeps the dark-scheme variables and lays light-grey ink on
+   white paper. */
 @media print {
-  body { background: #fff; color: #000; font-size: 11px; }
-  .sidebar, .no-print { display: none !important; }
+  :root {
+    --ink: #000; --ink-2: #1a1a1a; --ink-3: #454545;
+    --accent: #000; --accent-2: #000; --accent-soft: #fff; --amber: #000;
+    --surface: #fff; --surface-2: #fff; --rule: #9a9a9a;
+  }
+  @page { margin: 14mm 15mm; }
+  body { background: #fff; color: #000; font-size: 9.5pt; line-height: 1.45; }
+  .sidebar, .no-print, .chips, .stats { display: none !important; }
   .layout { display: block; max-width: none; }
   .main { padding: 0; }
-  .hero { padding: 0 0 14px; background: none; border-bottom: 2px solid #000; margin-bottom: 20px; }
-  .hero h1 { font-size: 26px; }
   .wrap { padding: 0; max-width: none; }
-  .stats { display: none; }
-  .cv-section { page-break-inside: avoid; margin-bottom: 20px; }
-  a { color: #000; }
+
+  .hero {
+    padding: 0 0 8pt; background: none;
+    border-bottom: 1.5pt solid #000; margin-bottom: 13pt;
+  }
+  .hero h1 { font-size: 20pt; margin-bottom: 2pt; }
+  .hero .role { font-size: 10pt; margin-bottom: 1pt; }
+  .hero .affil { font-size: 8.5pt; margin-bottom: 6pt; }
+  .hero .bio { font-size: 9.5pt; max-width: none; margin-bottom: 0; }
+
+  .cv-section { margin-bottom: 14pt; }
+  .cv-section > h2 {
+    font-size: 8.5pt; margin-bottom: 7pt; padding-bottom: 3pt;
+    page-break-after: avoid;
+  }
+  .cv-section h3.sub-head { font-size: 9.5pt; margin: 10pt 0 3pt; page-break-after: avoid; }
+  .cv-section p, .cv-section li { font-size: 9.5pt; margin-bottom: 4pt; }
+  .cv-section ul, .cv-section ol { margin-bottom: 6pt; }
+
+  /* pills waste a line each on paper - run them as one separated sentence */
+  .tag-list { display: block; }
+  .tag { display: inline; font-size: 9pt; background: none; padding: 0; }
+  /* margin, not spaces in content(): whitespace there collapses at the
+     element boundary and the dot ends up glued to the next entry */
+  .tag::after { content: '\00b7'; color: var(--ink-3); margin: 0 5pt; }
+  .tag:last-child::after { content: ''; }
+
+  .data-table { font-size: 9pt; }
+  .data-table th { font-size: 8pt; }
+  .data-table th, .data-table td { padding: 3.5pt 6pt; }
+
+  .updates { border-left: none; padding-left: 0; }
+  .update-item::before { display: none; }
+  .update-date, .update-note { font-size: 8.5pt; }
+  .update-body, .update-body li { font-size: 9pt; }
+
+  .pub-count { font-size: 9pt; margin-bottom: 8pt; }
+  .pub-year { margin: 12pt 0 5pt; page-break-after: avoid; }
+  .pub-year-num { font-size: 11pt; }
+  .pub-year-count { font-size: 8pt; }
+  .pub-entries { padding-left: 26pt; }
+  .pub-entries li { font-size: 9pt; margin-bottom: 5pt; page-break-inside: avoid; }
+
+  .site-footer { font-size: 8pt; margin-top: 16pt; }
+  a { color: #000; text-decoration: none; }
+  code { background: none; padding: 0; }
 }
 </style>
 </head>
