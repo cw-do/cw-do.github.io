@@ -1,38 +1,33 @@
-# research_portfolio
+# cw-do.github.io
 
-Research homepage for **Changwoo Do** — Scientific Staff and EQ-SANS Point of Contact,
+Research homepage of **Changwoo Do** — Scientific Staff and EQ-SANS Point of Contact,
 Neutron Scattering Division, Spallation Neutron Source, Oak Ridge National Laboratory.
 
-Live page: <https://cw-do.github.io/research_portfolio/>
+- Homepage: <https://cw-do.github.io/>
+- Full CV: <https://cw-do.github.io/cv/>
 
-## This is a build artifact — don't hand-edit `index.html`
+## This repository is a build artifact — don't edit it here
 
-`index.html` is generated. The source of truth for every fact on the page is
-`vault/areas/CV/cv_current.md` in the private `Research_ORNL` knowledge vault, and the page
-is built from it by `scripts/make_cv_html.py`:
-
-```
-python scripts/make_cv_html.py          # writes vault/areas/CV/index.html
-cp vault/areas/CV/index.html <clone>/index.html
-git -C <clone> commit -am "CV update" && git push
-```
-
-Editing `index.html` here would be silently overwritten by the next build, and would put the
-web page out of step with the CV it is supposed to mirror.
-
-What the generator reads:
+Everything in it is generated. The sources live in the private `Research_ORNL` knowledge
+vault under `vault/areas/CV/` and are built by `scripts/make_cv_html.py`:
 
 | Source | Feeds |
 |---|---|
-| `cv_current.md` | every section, the publication list, and the stat tiles (all counted, none typed in) |
-| `update.md` | the "Recent additions" timeline (only the citation lines; the internal log prose stays private) |
+| `cv_current.md` | every fact and number on both pages: sections, the publication list, stat tiles, software list, selected publications |
+| `homepage.md` | the homepage's hand-written prose — intro and research themes, each citing CV entry numbers so citation text is never retyped |
+| `update.md` | the News timeline (citation lines only) |
 
-The generator deliberately drops the personal cell number that `cv_current.md` carries. The
-office number and work email are published; the cell number is not.
+```
+python scripts/make_cv_html.py            # writes vault/areas/CV/site/
+cp -r vault/areas/CV/site/. <this clone>/
+git commit -am "..." && git push
+```
 
-## Enabling GitHub Pages
+Editing files here would be silently overwritten by the next build and would put the site
+out of step with the CV it mirrors.
 
-Settings → Pages → Source: *Deploy from a branch* → `main` / `/ (root)`.
+The generator deliberately omits the personal cell number that the source CV carries; the
+office number and work email are published.
 
-The page is one self-contained file: no build step, no dependencies, no external assets.
-`.nojekyll` keeps Pages from running Jekyll over it.
+One self-contained HTML file per page, no build step, no dependencies. `.nojekyll` keeps
+GitHub Pages from running Jekyll over it.
