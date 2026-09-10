@@ -459,7 +459,9 @@ a.stat:hover { text-decoration: none; background: var(--accent-soft); }
 .cites li { font-family: var(--sans); font-size: 12.5px; line-height: 1.4; margin-bottom: 6px; color: var(--ink-2); }
 .cites a { color: var(--ink); }
 .cites a:hover { color: var(--accent-2); }
-.cite-src { color: var(--ink-3); margin-left: 6px; white-space: nowrap; }
+/* no nowrap here: "Nucl. Instruments Methods Phys. Res. Sect. A 2013" cannot fit
+   on one line in a card and would overflow the border */
+.cite-src { color: var(--ink-3); margin-left: 6px; }
 
 /* two columns, not auto-fit: four cards as 3+1 strands the last one */
 .sw-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 28px; }
@@ -528,7 +530,7 @@ a.stat:hover { text-decoration: none; background: var(--accent-soft); }
         <p class="affil">Neutron Scattering Division, Spallation Neutron Source &middot; Oak Ridge National Laboratory</p>
       </div></div>
       <div class="intro"><p>I am an instrument scientist at the Spallation Neutron Source and the Point of Contact for EQ-SANS, its time-of-flight small-angle neutron scattering beamline. My current work is on the instrument itself: machine-learning methods that get more out of every neutron, software that makes the beamline easier for its users, and LLM agents that run the workflow from experiment to fitted model. I came to this from soft matter — polymers, polyelectrolytes, biomolecular assemblies — which is still what the instrument is for.</p></div>
-      <div class="chips"><a class="chip solid" href="mailto:doc1@ornl.gov">Email</a><a class="chip" href="cv/">Curriculum vitae</a><a class="chip" href="https://github.com/cw-do" target="_blank" rel="noopener">GitHub</a><a class="chip" href="https://neutrons.ornl.gov/eqsans" target="_blank" rel="noopener">EQ-SANS at SNS</a></div>
+      <div class="chips"><a class="chip solid" href="mailto:doc1@ornl.gov">Email</a><a class="chip" href="cv/">Curriculum vitae</a><a class="chip" href="https://github.com/cw-do" target="_blank" rel="noopener">GitHub</a><a class="chip" href="https://orcid.org/0000-0001-8358-8417" target="_blank" rel="noopener">ORCID</a><a class="chip" href="https://scholar.google.com/citations?user=UfzSwUIAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a><a class="chip" href="https://neutrons.ornl.gov/eqsans" target="_blank" rel="noopener">EQ-SANS at SNS</a></div>
     </div>
     <figure class="hero-art"><img src="assets/hero.jpg" width="1600" height="1183" alt="Cover art for Phys. Chem. Chem. Phys. 28, 13321 (2026) — PET chains dissolving in a mixture of HFIP and DCM" loading="eager"><figcaption>Cover art for <em>Phys. Chem. Chem. Phys.</em> <strong>28</strong>, 13321 (2026) — PET chains dissolving in a mixture of HFIP and DCM</figcaption></figure>
   </section>
